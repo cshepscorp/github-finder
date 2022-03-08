@@ -29,14 +29,14 @@ export const searchUsers = async (text) => {
 // }
 
 // get user and their repos axios
-export const getUserAndRepos = async (login) => {
-  const [user, repos] = await Promise.all([
-    github.get(`/users/${login}`),
-    github.get(`/users/${login}/repos`),
-  ]);
+// export const getUserAndRepos = async (login) => {
+//   const [user, repos] = await Promise.all([
+//     github.get(`/users/${login}`),
+//     github.get(`/users/${login}/repos`),
+//   ]);
 
-  return { user: user.data, repos: repos.data };
-};
+//   return { user: user.data, repos: repos.data };
+// };
 
 // get user and their repos with fetch
 // export const getUserAndRepos = async (login) => {
@@ -54,31 +54,31 @@ export const getUserAndRepos = async (login) => {
 // };
 
 // get single user
-// export const getUser = async (login) => {
-//   const response = await fetch(`http://api.github.com/users/${login}`);
-//   console.log('response from getUser', response);
+export const getUser = async (login) => {
+  const response = await fetch(`http://api.github.com/users/${login}`);
+  console.log('response from getUser', response);
 
-//   if (response.status === 404) {
-//     window.location = '/notfound';
-//   } else {
-//     const data = await response.json();
-//     console.log('data from response', data);
-//     return data;
-//   }
-// };
+  if (response.status === 404) {
+    window.location = '/notfound';
+  } else {
+    const data = await response.json();
+    console.log('data from response', data);
+    return data;
+  }
+};
 
 // get user repos
-// export const getUserRepos = async (login) => {
-//   const params = new URLSearchParams({
-//     sort: 'created',
-//     per_page: 10,
-//   });
+export const getUserRepos = async (login) => {
+  const params = new URLSearchParams({
+    sort: 'created',
+    per_page: 10,
+  });
 
-//   const response = await fetch(
-//     `http://api.github.com/users/${login}/repos?${params}`
-//   );
-//   console.log('response', response);
+  const response = await fetch(
+    `http://api.github.com/users/${login}/repos?${params}`
+  );
+  console.log('response', response);
 
-//   const data = await response.json();
-//   return data;
-// };
+  const data = await response.json();
+  return data;
+};
