@@ -55,7 +55,7 @@ export const searchUsers = async (text) => {
 
 // get single user
 export const getUser = async (login) => {
-  const response = await fetch(`http://api.github.com/users/${login}`);
+  const response = await fetch(`https://api.github.com/users/${login}`);
   console.log('response from getUser', response);
 
   if (response.status === 404) {
@@ -75,7 +75,7 @@ export const getUserRepos = async (login) => {
   });
 
   const response = await fetch(
-    `http://api.github.com/users/${login}/repos?${params}`
+    `https://api.github.com/users/${login}/repos?${params}`
   );
   console.log('response', response);
 
